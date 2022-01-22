@@ -18,7 +18,7 @@ jobs:
         uses: docker/setup-qemu-action@v1
         with: 
           image: karolniedziela/zadanie2:v1
-          platforms: "arm64,386,mips64"      
+          platforms: "arm64,386,mips64;"      
       
       - name: Buildx set-up
         id: buildx
