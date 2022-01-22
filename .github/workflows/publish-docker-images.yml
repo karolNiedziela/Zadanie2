@@ -70,3 +70,35 @@ jobs:
           file: ./Dockerfile.zad2
           push: true
           tags: karolniedziela/zadanie2_3:v1
+    
+  build-with-cache:
+    name: Building with cache
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Buildx set-up
+        id: buildx
+        with: 
+          install: true
+        uses: docker/setup-buildx-action@v1
+         
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./Dockerfile.zad2
+          push: true
+          tags: karolniedziela/zadanie2_4:v1
+          cache-from: type=registry,ref=karolniedziela/zadanie2_4:v1
+          cache-to: type=inline
+          
