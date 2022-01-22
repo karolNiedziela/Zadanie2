@@ -33,6 +33,6 @@ jobs:
         with:
           context: ./
           file: ./dockerfile.v1
-          platforms: linux/arm64,linux/386,linux/mips64     
+          platforms: linux/amd64,linux/386,linux/arm64     
           push: true
           tags: karolniedziela/zadanie2:v1
